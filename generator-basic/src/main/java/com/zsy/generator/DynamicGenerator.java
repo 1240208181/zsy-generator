@@ -19,13 +19,13 @@ import java.io.Writer;
 public class DynamicGenerator {
 
     public static void main(String[] args) throws IOException, TemplateException {
-        String projectPath = System.getProperty("user.dir") + File.separator +"generator-basic";
+        String projectPath = System.getProperty("user.dir");
         String inputPath = projectPath + File.separator + "src/main/resources/templates/MainTemplate.java.ftl";
         String outputPath = projectPath + File.separator + "MainTemplate.java";
 
         MainTemplateConfig mainTemplateConfig = new MainTemplateConfig();
         mainTemplateConfig.setAuthor("zsy");
-        mainTemplateConfig.setLoop(true);
+        mainTemplateConfig.setLoop(false);
         mainTemplateConfig.setOutputText("求和结果：");
 
         doGenerate(inputPath, outputPath, mainTemplateConfig);
