@@ -5,10 +5,8 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 动态文件生成器
@@ -54,13 +52,15 @@ public class DynamicGenerator {
 
         // 创建模板对象，加载指定模板
         String templateName = new File(inputPath).getName();
-        Template template = configuration.getTemplate(templateName);
 
-        // 生成
-        Writer out = new FileWriter(outputPath);
+        // 生成(解决中文乱码)
+        //Writer out = new FileWriter(outputPath);
+        Template template = configuration.getTemplate(templateName, "UTF-8");
+        BufferedWriter out =
+                new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputPath), StandardCharsets.UTF_8));
         template.process(model, out);
 
-        // 生成文件后别忘了关闭哦
+        // 关闭流
         out.close();
     }
 
