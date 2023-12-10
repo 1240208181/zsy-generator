@@ -6,8 +6,9 @@
   "author": "zsy",
   "createTime": "2023-12-04",
   "fileConfig": {
-    "inputRootPath": "F:/Code/project/zsy-generator/demo-projects/acm-template-pro",
+    "inputRootPath": ".source/acm-template-pro",
     "outputRootPath": "generated",
+    "sourceRootPath": "F:/Code/project/zsy-generator/demo-projects/acm-template-pro",
     "type": "dir",
     "files": [
       {
