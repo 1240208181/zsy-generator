@@ -15,13 +15,12 @@
 
   示例命令：
   ```
-  generator generate <#list modelConfig.models as modelInfo>-${modelInfo.abbr} </#list>
+  generator generate <#list modelConfig.models as modelInfo>-${modelInfo.abbr?c} </#list>
   ```
-
   ## 参数说明
   <#list modelConfig.models as modelInfo>
 
-  ${modelInfo?index + 1}）${modelInfo.fieldName}
+  ${modelInfo?index + 1}）${modelInfo.fieldName ! }
 
   类型：${modelInfo.type}
 
