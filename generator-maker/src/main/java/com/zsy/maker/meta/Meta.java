@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 public class Meta {
 
-     private String name;
+    private String name;
     private String description;
     private String basePackage;
     private String version;

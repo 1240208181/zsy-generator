@@ -30,14 +30,15 @@ import java.util.stream.Collectors;
 public class TemplateMaker {
     /**
      * 制作模板
-     * @param newMeta
-     * @param originProjectPath
-     * @param templateMakerFileConfig
-     * @param templateMakerModelConfig
-     * @param id
+     * @param newMeta meta.json元信息对象
+     * @param originProjectPath 原模板文件绝对路径
+     * @param templateMakerFileConfig 模板文件制作对象文件配置参数
+     * @param templateMakerModelConfig 模板文件制作对象模型配置参数
+     * @param id 文件夹空间id
      * @return
      */
-    private static long makeTemplate(Meta newMeta, String originProjectPath, TemplateMakerFileConfig templateMakerFileConfig, TemplateMakerModelConfig templateMakerModelConfig, Long id){
+    private static long makeTemplate(Meta newMeta, String originProjectPath, TemplateMakerFileConfig templateMakerFileConfig,
+                                     TemplateMakerModelConfig templateMakerModelConfig, Long id){
         // 没有 id 则生成
         if (id == null){
             id = IdUtil.getSnowflakeNextId();
@@ -46,8 +47,9 @@ public class TemplateMaker {
         String projectPath = System.getProperty("user.dir");
         String tempDirPath = projectPath + File.separator + ".temp";
         String templatePath = tempDirPath + File.separator + id;
+        // 目录不存在则复制原模板
         if (!FileUtil.exist(templatePath)){
-            FileUtil.mainName(templatePath);
+            FileUtil.mkdir(templatePath);
             FileUtil.copy(originProjectPath, templatePath, true);
         }
 
@@ -65,7 +67,7 @@ public class TemplateMaker {
         // 本次新增的模型列表
         List<Meta.ModelConfig.ModelInfo> newModelInfoList = new ArrayList<>();
 
-        // 如果是模型组
+        // 如果模型分组
         TemplateMakerModelConfig.ModelGroupConfig modelGroupConfig = templateMakerModelConfig.getModelGroupConfig();
         if (modelGroupConfig != null) {
             String condition = modelGroupConfig.getCondition();
@@ -95,12 +97,13 @@ public class TemplateMaker {
 
         List<TemplateMakerFileConfig.FileInfoConfig> fileInfoConfigList = templateMakerFileConfig.getFiles();
 
+        // 保存过滤后的文件信息
         List<Meta.FileConfig.FileInfo> newFileInfoList = new ArrayList<>();
         for (TemplateMakerFileConfig.FileInfoConfig fileInfoConfig : fileInfoConfigList) {
             String inputFilePath = fileInfoConfig.getPath();
             String inputFileAbsolutePath = sourceRootPath + File.separator + inputFilePath;
 
-            // 传入绝对路径
+            // 传入绝对路径,过滤
             List<File> fileList = FileFilter.doFilter(inputFileAbsolutePath, fileInfoConfig.getFilterConfigList());
             // 过滤后的文件列表
             for (File file : fileList) {
