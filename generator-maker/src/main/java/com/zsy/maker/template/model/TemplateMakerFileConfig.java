@@ -30,9 +30,13 @@ public class TemplateMakerFileConfig {
          */
         private String path;
         /**
+         * 用于控制一组的信息
+         */
+        private String condition;
+        /**
          * 过滤条件
          */
-        private List<FileFilterConfig> FilterConfigList;
+        private List<FileFilterConfig> filterConfigList;
     }
 
     @Data
