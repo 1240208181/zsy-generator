@@ -11,6 +11,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseLoginUserVO_ = {
+    code?: number;
+    data?: LoginUserVO;
+    message?: string;
+  };
+
   type BaseResponseLong_ = {
     code?: number;
     data?: string;
@@ -60,6 +66,11 @@ declare namespace API {
   };
 
   type DeleteRequest = {
+    id?: string;
+  };
+
+  type downloadGeneratorByIdUsingGETParams = {
+    /** id */
     id?: string;
   };
 
@@ -198,6 +209,16 @@ declare namespace API {
     id?: string;
   };
 
+  type LoginUserVO = {
+    createTime?: string;
+    id?: string;
+    updateTime?: string;
+    userAvatar?: string;
+    userName?: string;
+    userProfile?: string;
+    userRole?: string;
+  };
+
   type ModelConfig = {
     models?: ModelInfo[];
   };
@@ -270,6 +291,11 @@ declare namespace API {
     searchCount?: boolean;
     size?: string;
     total?: string;
+  };
+
+  type testDownloadFileUsingGETParams = {
+    /** filePath */
+    filePath?: string;
   };
 
   type uploadFileUsingPOSTParams = {

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.zsy.web.model.dto.user.UserQueryRequest;
 import com.zsy.web.model.entity.User;
 import com.zsy.web.model.vo.GeneratorVO;
+import com.zsy.web.model.vo.LoginUserVO;
 import com.zsy.web.model.vo.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +34,7 @@ public interface UserService extends IService<User> {
      * @param request
      * @return 脱敏后的用户信息
      */
-    GeneratorVO userLogin(String userAccount, String userPassword, HttpServletRequest request);
+    LoginUserVO userLogin(String userAccount, String userPassword, HttpServletRequest request);
 
 
     /**
@@ -81,7 +82,7 @@ public interface UserService extends IService<User> {
      *
      * @return
      */
-    GeneratorVO getLoginUserVO(User user);
+    LoginUserVO getLoginUserVO(User user);
 
     /**
      * 获取脱敏的用户信息

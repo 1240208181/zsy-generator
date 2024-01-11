@@ -5,7 +5,8 @@ import defaultSettings from '../config/defaultSettings';
 import { AvatarDropdown } from './components/RightContent/AvatarDropdown';
 import { requestConfig } from './requestConfig';
 import { getLoginUserUsingGet } from '@/services/backend/userController';
-import logo from "@/assets/logo.png"
+import logo from '@/assets/logo.png';
+
 const loginPath = '/user/login';
 
 /**

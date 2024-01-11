@@ -6,8 +6,8 @@ import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { Helmet, history, useModel } from '@umijs/max';
 import { message, Tabs } from 'antd';
 import React, { useState } from 'react';
+import { Link } from 'umi';
 import Settings from '../../../../config/defaultSettings';
-import {Link} from "umi";
 
 const Login: React.FC = () => {
   const [type, setType] = useState<string>('account');
@@ -30,7 +30,6 @@ const Login: React.FC = () => {
       const res = await userLoginUsingPost({
         ...values,
       });
-
       const defaultLoginSuccessMessage = '登录成功！';
       message.success(defaultLoginSuccessMessage);
       // 保存已登录用户信息
@@ -66,7 +65,7 @@ const Login: React.FC = () => {
             maxWidth: '75vw',
           }}
           logo={<img alt="logo" style={{ height: '100%' }} src="/logo.png" />}
-          title="代码生成平台"
+          title="代码生成"
           subTitle={'代码生成器在线制作共享，大幅提升开发效率'}
           initialValues={{
             autoLogin: true,

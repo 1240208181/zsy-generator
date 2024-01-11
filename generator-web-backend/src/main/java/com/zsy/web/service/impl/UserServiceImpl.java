@@ -11,6 +11,7 @@ import com.zsy.web.model.dto.user.UserQueryRequest;
 import com.zsy.web.model.entity.User;
 import com.zsy.web.model.enums.UserRoleEnum;
 import com.zsy.web.model.vo.GeneratorVO;
+import com.zsy.web.model.vo.LoginUserVO;
 import com.zsy.web.model.vo.UserVO;
 import com.zsy.web.service.UserService;
 import com.zsy.web.utils.SqlUtils;
@@ -78,7 +79,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public GeneratorVO userLogin(String userAccount, String userPassword, HttpServletRequest request) {
+    public LoginUserVO userLogin(String userAccount, String userPassword, HttpServletRequest request) {
         // 1. 校验
         if (StringUtils.isAnyBlank(userAccount, userPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "参数为空");
@@ -184,13 +185,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public GeneratorVO getLoginUserVO(User user) {
+    public LoginUserVO getLoginUserVO(User user) {
         if (user == null) {
             return null;
         }
-        GeneratorVO generatorVO = new GeneratorVO();
-        BeanUtils.copyProperties(user, generatorVO);
-        return generatorVO;
+        LoginUserVO loginUserVO = new LoginUserVO();
+        BeanUtils.copyProperties(user, loginUserVO);
+        return loginUserVO;
     }
 
     @Override

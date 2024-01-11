@@ -12,6 +12,7 @@ import com.zsy.web.exception.ThrowUtils;
 import com.zsy.web.model.dto.user.*;
 import com.zsy.web.model.entity.User;
 import com.zsy.web.model.vo.GeneratorVO;
+import com.zsy.web.model.vo.LoginUserVO;
 import com.zsy.web.model.vo.UserVO;
 import com.zsy.web.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -69,7 +70,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/login")
-    public BaseResponse<GeneratorVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
+    public BaseResponse<LoginUserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
         if (userLoginRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -78,8 +79,8 @@ public class UserController {
         if (StringUtils.isAnyBlank(userAccount, userPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        GeneratorVO generatorVO = userService.userLogin(userAccount, userPassword, request);
-        return ResultUtils.success(generatorVO);
+        LoginUserVO loginUserVO = userService.userLogin(userAccount, userPassword, request);
+        return ResultUtils.success(loginUserVO);
     }
 
 
@@ -105,7 +106,7 @@ public class UserController {
      * @return
      */
     @GetMapping("/get/login")
-    public BaseResponse<GeneratorVO> getLoginUser(HttpServletRequest request) {
+    public BaseResponse<LoginUserVO> getLoginUser(HttpServletRequest request) {
         User user = userService.getLoginUser(request);
         return ResultUtils.success(userService.getLoginUserVO(user));
     }
