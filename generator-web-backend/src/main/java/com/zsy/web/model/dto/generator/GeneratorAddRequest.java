@@ -1,6 +1,6 @@
 package com.zsy.web.model.dto.generator;
 
-import com.zsy.web.meta.Meta;
+import com.zsy.maker.meta.Meta;
 import lombok.Data;
 
 import java.io.Serializable;

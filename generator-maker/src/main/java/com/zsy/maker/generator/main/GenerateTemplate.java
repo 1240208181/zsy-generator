@@ -26,6 +26,18 @@ public abstract class GenerateTemplate {
         // 输出的根路径
         String projectPath=System.getProperty("user.dir");
         String outputPath = projectPath + File.separator + "generated" + File.separator + meta.getName();
+        doGenerate(meta, outputPath);
+    }
+
+    /**
+     * 生成
+     * @throws TemplateException
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public void doGenerate(Meta meta, String outputPath) throws TemplateException, IOException, InterruptedException{
+
+        // 输出的根路径
         if (!FileUtil.exist(outputPath)){
             FileUtil.mkdir(outputPath);
         }
@@ -42,10 +54,7 @@ public abstract class GenerateTemplate {
 
         // 5.生成精简版的程序（产物包）
         buildDist(outputPath, sourceCopyDestPath, jarPath,shellOutputFilePath);
-
-
     }
-
     protected  String buildScript(String outputPath, String jarPath) throws IOException {
         String shellOutputFilePath = outputPath + File.separator + "generator";
         ScriptGenerator.doGenerate(shellOutputFilePath, jarPath);
@@ -76,8 +85,7 @@ public abstract class GenerateTemplate {
 
     protected  void generateCode(Meta meta, String outputPath) throws IOException, TemplateException {
         // 读取resource目录
-        ClassPathResource classPathResource = new ClassPathResource("");
-        String inputResourcePath = classPathResource.getAbsolutePath();
+        String inputResourcePath = "";
 
         // Java 包基础路径
         // com.zsy
